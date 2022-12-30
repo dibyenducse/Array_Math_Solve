@@ -423,7 +423,7 @@ string with spaces in between all of the characters.*/
 function spaceMeOut(str) {
     for(let i=0; i<str.length; i++){
         let myArr = str.split("")
-       return myArr.join("+");
+       return myArr.join(" ");
     }
 	
 }
@@ -454,11 +454,261 @@ If the input array is empty, consider it as an array with a zero ([0]). */
 
 function evenOrOdd(arr) {
 	let sum = arr.reduce(getSum, 0)
-    if(sum%0 == 0){
+    if(sum%2 == 0){
         return "even";
     } return "odd";
-    function getSum(total, num){
+       function getSum(total, num){
         return total+num;
     }
 }
 console.log(evenOrOdd([1,2,3,4,5,6]))
+
+//----------------------------------Problem-25-------------------------------------
+//Half, Quarter and Eighth
+/*Create a function that takes a number and return an array of three numbers: 
+half of the number, quarter of the number and an eighth of the number.*/
+
+function halfQuarterEighth(num){
+    let arr = [];
+    arr.push(num/2);
+    arr.push(num/4);
+    arr.push(num/8);
+    return arr;
+}
+
+console.log(halfQuarterEighth(22));
+
+//----------------------------------Problem-26-------------------------------------
+//Shapes With N Sides
+/*Create a function that takes a whole number as input and returns the shape with that number's amount of sides. 
+Here are the expected outputs to get from these inputs.*/
+function nSidedShape(n) {
+	if(n==1) return "circle";
+	if(n==2) return "semi-circle";
+	if(n==3) return "triangle";
+	if(n==4) return "square";
+	if(n==5) return "pentagon";
+	if(n==6) return "hexagon";
+	if(n==7) return "heptagon";
+	if(n==8) return "octagon";
+	if(n==9) return "nonagon";
+	if(n==10)return "decagon";
+
+}
+console.log(nSidedShape(11))
+
+
+//----------------------------------Problem-26-------------------------------------
+//Array From a Range of Numbers
+/*Create a function that returns an array of all the integers between two 
+given numbers start and end.*/
+function rangeOfNum(start, end) {
+	let arr =[];
+    for(let i = start+1; start<i && i<end; i++){
+        arr.push(i)
+    }
+    return arr;
+}
+console.log(rangeOfNum(3, 5))
+
+//
+rangeOfNum(2, 4)
+
+//------------------------------------alternative-----------------------------------
+const rangeOfNum2 = (start, end) => 
+	Array.from({length: end - (start + 1)}, (_, i) => ++i + start)
+
+    console.log(rangeOfNum2(3, 5))
+
+
+
+//----------------------------------Problem-27-------------------------------------
+//Add the Index
+/*Given an array of numbers, create a function which returns the same array but with each element's index in the array added to itself. This means you add 0 to the number at index 0, add 1 to the number at index 1, etc... */
+
+function addIndexes(arr) {
+	for(let i=0; i<arr.length; i++){
+        arr[i] += i;
+    }
+    return arr;
+}
+console.log(addIndexes([5, 4, 3, 2, 1]))
+
+//------------------------------alternative-----------------------------------------
+
+function addIndex(arr){
+    newArr = arr.map(myFunction);
+       function myFunction(value, index){
+        return value + index;
+    }
+    return newArr;
+}
+console.log(addIndex([5, 4, 3, 2, 1]))
+
+
+//----------------------------------Problem-28-------------------------------------
+//Filter Strings from Array
+/*Create a function that takes an array of strings and numbers, and filters out the array so that it returns an array of integers only. */
+
+function filterArray(arr) {
+	 let numArr = arr.filter(myFunction)
+     function myFunction(val){
+      return  Number.isInteger(val); 
+     }
+     
+     return numArr;
+     
+}
+console.log(filterArray([1, 2, 3, "a", "b", 4]))
+console.log(filterArray(["A", 0, "Edabit", 1729, "Python", "1729"]))
+
+//----------------------------------Problem-29-------------------------------------
+//Binary Array to Decimal
+/*In mathematics and digital electronics, a binary number is a number expressed in the base-2 numeral system or binary numeral system. Given an array of ones and zeroes of a binary number, return the equivalent decimal value. */
+
+function binaryToDecimal(arr) {
+	let string = arr.join("");
+    let number = Number.parseInt(string,  2);
+     return number;
+}
+console.log(binaryToDecimal([1,0, 0, 0, 1,1,]))
+console.log(binaryToDecimal([0, 0, 1, 0]))
+
+//----------------------------------Problem-30-------------------------------------
+//The Forbidden Letter
+/* Given a letter and an array of words, return whether the letter does not appear in any of the words.*/
+
+function forbiddenLetter(char, arr) {
+	return !arr.join("").includes(char);
+}
+console.log(forbiddenLetter("r", ["rock", "paper", "scissors"]))
+console.log(forbiddenLetter("a", ["spoon", "fork", "knife"]))
+console.log(forbiddenLetter("4", []))
+
+//----------------------------------Problem-31-------------------------------------
+//Cleaning Up Messy Arrays
+/*Create a function that takes an array. This array will contain numbers represented as strings.
+Your function should split this array into two new arrays. The first array should contain only even numbers. The second only odd. Then, wrap these two arrays in one main array and return it.
+Return an empty array if there are no even numbers, or odd. */
+
+
+function cleanUpArray(arr) {
+	 let evenArr = [];
+     let oddArr = [];
+     let emptyArr = [];
+
+    for(let i=0; i<arr.length; i++){
+      if(arr[i]%2 == 0){ 
+        evenArr.push(arr[i])
+    }
+      else if (arr[i]%2 !== 0){ 
+        oddArr.push(arr[i])
+      }
+      else {
+        emptyArr.push(arr[i])
+    }
+
+    }
+   return {evenArr, oddArr, emptyArr}
+
+}
+console.log(cleanUpArray(["7", "4", "8"]))
+
+//----------------------------------Problem-32-------------------------------------
+//Factors of a Given Number
+
+/*Create a function that finds each factor of a given number n. Your solution should return an array of the number(s) that meet this criteria. */
+
+function findFactors(num) {
+	let arr = [];
+    if(num<0)
+        return -1;
+    
+    else if (num === 0)
+        return 1;
+    
+    else { 
+        return (arr.push((num * findFactors(num-1))));
+    }
+}
+console.log(findFactors(5));
+
+//-----------------------alter------------------
+function findFactors(num) {
+	let factors = [];
+	for(let i=1; i<=num; i++ ){
+		if(num%i == 0){
+			factors.push(i);
+		}
+	}
+	return factors;
+}
+console.log(findFactors(9));
+
+
+//----------------------------------Problem-33-------------------------------------
+
+//Seven Boom!
+/*Create a function that takes an array of numbers and return "Boom!" if the digit 7 appears in the array. Otherwise, return "there is no 7 in the array". */
+
+function sevenBoom(arr) {
+    let display = "";
+    let rel = arr.join("");
+    let result = rel.includes(7)
+     if(result == true) {
+        display = "Boom"
+     }else{
+        display = "there is no 7 in the array"
+     }
+	return display;
+}
+
+//console.log(sevenBoom([1, 2, 3, 4, 5, 6, 7]))
+//console.log(sevenBoom([0, 2, 3, 4, 5, 6, 8]))
+//console.log(sevenBoom([0, 2, 3, 7, 5, 6, 8]))
+console.log(sevenBoom([2, 55, 60, 9, 86]))
+
+
+//----------------------------------Problem-34-------------------------------------
+//Convert "Zero" and "One" to "1" and "0"
+
+/*Create a function that takes a string as an argument. The function must return a string containing 1s and 0s based on the string argument's words. If any word in the argument is not equal to "zero" or "one" (case insensitive), you should ignore it. The returned string's length should be a multiple of 8, if the string is not a multiple of 8 you should remove the numbers in excess. */
+/*
+function textToNumberBinary(str) {
+	let display = "";
+    let loStr = str.toLowerCase();
+  //for(let i=4; i<12; i++){
+      
+    if(loStr.includes("zero") == true){
+        display = "0";
+    } else if(loStr.includes("one") == true){
+        display = "1";       
+    } else{
+        display = "Nothing"
+   // }
+}
+    return display;
+}
+console.log(textToNumberBinary("zero one zero one zero one zero one"))
+/*
+let text = "HELLO WORLD";
+let letter=""
+for(let i=0; i<89; i++){
+
+ letter += text.charAt(i);
+
+}
+console.log(letter)*/0
+
+//-------------------
+const textToNumberBinary = str => {
+    const cleanStr = str
+        .replace(/zero/gi, '0')
+        .replace(/one/gi, '1')
+      .replace(/[^01]/g, '');
+    
+    const strLength = Math.floor(cleanStr.length / 8) * 8;
+    
+    return cleanStr.slice(0, strLength);
+  }
+  console.log(textToNumberBinary("zero one zero one zero one zero one"))
